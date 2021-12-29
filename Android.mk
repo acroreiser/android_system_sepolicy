@@ -143,11 +143,12 @@ endif
 NEVERALLOW_ARG :=
 ifeq ($(SELINUX_IGNORE_NEVERALLOWS),true)
 ifeq ($(TARGET_BUILD_VARIANT),user)
-$(error SELINUX_IGNORE_NEVERALLOWS := true cannot be used in user builds)
-endif
+$(warning SELINUX_IGNORE_NEVERALLOWS := true must not be used in retail user builds)
+else
 $(warning Be careful when using the SELINUX_IGNORE_NEVERALLOWS flag. \
           It does not work in user builds and using it will \
           not stop you from failing CTS.)
+endif
 NEVERALLOW_ARG := -N
 endif
 
